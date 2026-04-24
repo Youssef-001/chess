@@ -33,6 +33,11 @@ def normalize_white_directions(directions):
 def add_cells(cell1, cell2):
   return [cell1[0]+cell2[0], cell1[1]+cell2[1]]
 
+
+def check_boundry(cell):
+  if cell[0] >=0  and cell[0] < 8 and cell[1] >= 0 and cell[1] < 8:
+    return True
+  return False
 class Pawn(ChessPiece):
 
 
@@ -47,6 +52,7 @@ class Pawn(ChessPiece):
 
     for i in range(4):
       added_cell = add_cells(directions[i], [from_row, from_col])
+      if check_boundry(added_cell) == False: pass
       if (i==0 or i==1):
         if board[added_cell[0]][added_cell[1]] == None: self.valid_moves.push(added_cell)
       else:
